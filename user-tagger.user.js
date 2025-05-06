@@ -103,6 +103,7 @@ $("a[href*='userlookup/?user=']:not(:has(div)):not(.user-info-icon), a[href*='ra
     } else if($(v).attr("href").includes("randomfriend=")) {
         user = getParameterByName($(v).attr("href"), "randomfriend");
     } else {
+        // added this condition to get the shop owner username
         user = getParameterByName($(v).attr("href"), "owner");
     }
     let tag = makeTag();
