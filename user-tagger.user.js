@@ -6,7 +6,7 @@
 // @grant           GM_setValue
 // @require         http://code.jquery.com/jquery-latest.js
 // @match           https://www.grundos.cafe/*
-// @version         0.1.2
+// @version         0.1.3
 // ==/UserScript==
 
 $(`<style type='text/css'>
@@ -101,9 +101,20 @@ tags = getTags();
     - GC uses "userlookup/?user=" but im keeping the "randomfriend" ones to be sure
     - for shops, i added "browseshop/?owner="
     - :not(.user-info-icon) is to not include the user icon in the header
+    - 
 */
 $("a[href*='userlookup/?user=']:not(:has(div)):not(.user-info-icon), a[href*='randomfriend/?user=']:not(:has(div)), a[href*='randomfriend/?randomfriend=']:not(:has(div)), a[href*='browseshop/?owner=']:not(:has(div))").each(function (k, v) {
     let user;
+
+    /*  
+        Exclude user icon and toggle buttons
+    */
+    let elementId = $(v).attr("id");
+    if(elementId == 'show-mobile-toggle' || elementId == 'dark-mode-toggle')
+        return;
+
+
+
     if($(v).attr("href").includes("user=")) {
         user = getParameterByName($(v).attr("href"), "user");
     } else if($(v).attr("href").includes("randomfriend=")) {
