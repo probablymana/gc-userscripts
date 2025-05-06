@@ -6,7 +6,7 @@
 // @grant        GM_setValue
 // @require      http://code.jquery.com/jquery-latest.js
 // @match        https://www.grundos.cafe/*
-// @version 0.0.2
+// @version 0.0.3
 // @downloadURL  https://github.com/probablymana/gc-userscripts/raw/refs/heads/main/user-tagger.user.js
 // @updateURL    https://github.com/probablymana/gc-userscripts/raw/refs/heads/main/user-tagger.user.js
 // ==/UserScript==
