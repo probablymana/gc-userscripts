@@ -1,12 +1,12 @@
 // ==UserScript==
 // @name            Grundo's Cafe - User Tagger
-// @description     User tagger for Grundo's Cafe
+// @description     User tagger for Grundo's Cafe, based on diceroll123's script (https://gist.github.com/diceroll123/be1465e82d12f2d23d8a)
 // @author          diceroll123, 2016+ (modified by Alexis and Mana for GC, 2025)
 // @grant           GM_getValue
 // @grant           GM_setValue
 // @require         http://code.jquery.com/jquery-latest.js
 // @match           https://www.grundos.cafe/*
-// @version         0.1.4
+// @version         0.1.5
 // ==/UserScript==
 
 $(`<style type='text/css'>
