@@ -92,12 +92,16 @@ function applyPetOverlays() {
 
         Not supported:
         - Zapping (text is 2 elements before)
+
+        Note:
+        - exclude rainbow pool from matching with active
     */
 
 
     const urlKeyword = "/pets/";
     const petImages = $("img[src*='" + urlKeyword + "']");
 
+    //console.log(petImages);
     // get active information
     let activeImg = $('.aio-pet-image')[0];
     let activeSpCol = "";
@@ -121,18 +125,20 @@ function applyPetOverlays() {
         let petUrl = petImage.src;
         let petPose = getPose(petUrl, urlKeyword);
 
-        console.log('url: ' + petUrl);
+        console.log(i + ' url: ' + petUrl);
         //console.log(petPose);
 
         let imgAlt = petImage.alt;
-        if(petImage.title != undefined) imgAlt = petImage.title;
-
-        let replacementUrl = "";
-        console.log('alt: ' + imgAlt);
+        if(imgAlt == "" && petImage.title != "") imgAlt = petImage.title;
+    
+        // if no matches, do not replace the url with an overlay
+        let replacementUrl = petUrl;
+        //console.log('alt: ' + imgAlt);
 
         // If can find altname in dict
         if(petOverlays[imgAlt] != undefined) {
             replacementUrl = petOverlays[imgAlt][petPose];
+            //console.log('test 1 ' + imgAlt + ' ' + petPose + ' ' + replacementUrl);
         }
         // If not, then match with active pet (if applicable?)
         else if(
@@ -177,9 +183,6 @@ function applyPetOverlays() {
                 elementTexts.push(parentElement.innerText);
             }
 
-            // if no matches, do not replace the url with an overlay
-            replacementUrl = petUrl;
-
             for(let j = 0; j < matchingOverlays.length; j++) {
                 let matchName = matchingOverlays[j];
                 
@@ -195,6 +198,7 @@ function applyPetOverlays() {
         let currentHeight = petImage.height;
         let currentWidth = petImage.width;
 
+        //console.log('replaced ' + petImage.src + ' with ' + replacementUrl);
         petImage.src = replacementUrl;
         if(currentHeight > 0) petImage.height = currentHeight;
         if(currentWidth > 0) petImage.width = currentWidth;
@@ -216,6 +220,9 @@ function applyPetpetOverlays() {
         Not supported:
         - Turmaculus
         - Symol Hole
+
+        maybe look for imgs (src contains '/items/') that have an a href containing '/neopetpet'
+        or class pet-with-petpet
     */
 }
 
