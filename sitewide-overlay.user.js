@@ -42,9 +42,9 @@ const petOverlays = {
         "hit": "https://images2.imgbox.com/d7/48/8dEDw4X7_o.png",
         "rangedattack": "https://images2.imgbox.com/d7/48/8dEDw4X7_o.png"
     },
-    "Gyren": {
+    "Tamashii": {
         "species": "lupe",
-        "colour": "rainbow",
+        "colour": "shadow",
         "circle": "https://images2.imgbox.com/fe/00/SHTmeLIi_o.png",
         "happy": "https://images2.imgbox.com/fe/00/SHTmeLIi_o.png",
         "sad": "https://images2.imgbox.com/fe/00/SHTmeLIi_o.png",
@@ -140,10 +140,11 @@ function applyPetOverlays() {
             replacementUrl = petOverlays[imgAlt][petPose];
             //console.log('test 1 ' + imgAlt + ' ' + petPose + ' ' + replacementUrl);
         }
-        // If not, then match with active pet (if applicable?)
+        // If not, then match with active pet (if applicable?) but do not match with rainbow pool listings
         else if(
             matchesActive(activePet, getSpeciesColour(petUrl, urlKeyword)) &&
-            petOverlays[activePet.name] != undefined
+            petOverlays[activePet.name] != undefined &&
+            !document.location.href.includes('/rainbowpool/')
         ) {
             replacementUrl = petOverlays[activePet.name][petPose];
         }
